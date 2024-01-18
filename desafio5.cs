@@ -1,32 +1,31 @@
+string? lerResultado;
+string valorDeEntrada = "";
+bool validarNumero = false;
+int numValue = 0;
 
-string? number;
-string validaEntrada = "";
-bool entradaValida = false;
-int validoNumero = 0;
+Console.WriteLine("Enter an integer value between 5 and 10");//faz a pergunta pro usuario antes do bloco
 
-Console.WriteLine("Entre com valor entre 5 e 10:");
-do{
-    number = Console.ReadLine();
-    if (number != null)
+do
+{
+    lerResultado = Console.ReadLine();//ler o valor digitado pelo usuario
+    if(lerResultado != null)//verifica se é diferente de nulo
     {
-        validaEntrada = number;
+        valorDeEntrada = lerResultado;//equivale variavel vazia antes para agora valor digitado
     }
 
-    entradaValida = int.TryParse(validaEntrada, out validoNumero);
-    if (entradaValida == true)
+    validarNumero = int.TryParse(valorDeEntrada, out numValue);//variavel tem valor de int, e sua saida é int
+
+    if (validarNumero == true)// caso seja verdadeiro entra no codigo
     {
-        if (validoNumero <= 5 || validoNumero >= 10)
+        if (numValue <= 5 || numValue >= 10) // se numValue for menor ou igual a 5 ou 10 é FALSO
         {
-            entradaValida = false;
-            Console.WriteLine($"You entered {validoNumero}. Please enter a number between 5 and 10.");
+            validarNumero = false; //validaNumero euqivale a Falso agora
+            Console.WriteLine($"seu numero {numValue} continua fora dos numero entre 5 e 10");//mnostrando essa msg
         }
-
     }
-    else
+    else//caso não entre na condição anterior ele mostra essa msg
     {
-    Console.WriteLine("Sorry, you entered an invalid number, please try again");
+        Console.WriteLine("Seu numero está incorreto, tente mais uma vez");
     }
-    }while(entradaValida == false);
-
-    Console.WriteLine($"Your input value ({validoNumero}) has been accepted.");
-    number = Console.ReadLine();
+}while(validarNumero == false);//loop acontece se a variavel for igual a falso
+Console.WriteLine($"Parabens seu numero {numValue} foi aceito");//sendo verdadeiro ela sai do loop aparecendo essa msg
